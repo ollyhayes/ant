@@ -1,0 +1,10 @@
+/node_modules
+bundles
+/package-lock.json
+/common/config.json
+/grabber/logs*
+
+*.backup*
+/*.db
+/*-wal
+/*-shm
