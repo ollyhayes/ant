@@ -1,0 +1,16 @@
+what happens if heart rate sensor attached after the scan?
+
+what happens if the heart rate sensor 
+
+
+leaving the application running at all times
+	sensor 1 turned on	
+	attach or scan
+	sensor 1 in use
+	at some point detach maybe
+	return to top
+
+what happens if two sensors are on at the same time?
+	for first attempt, all sensors send, accept it's broken if more than one found
+	should we remember which sensor was first connected and only use that?
+	should we have some gui, e.g. electron or web - match sensors to bulbs
