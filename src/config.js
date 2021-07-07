@@ -1,5 +1,5 @@
 module.exports = {
-	simulate: true,
+	simulate: false,
 	heartRateSensors: {
 		lightId: 0
 	},

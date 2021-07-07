@@ -3,9 +3,7 @@ const config = require('./config');
 const { connectAnt } = config.simulate
 	? require('./ant-simulator')
 	: require('./ant');
-const { setLight } = config.simulate
-	? {setLight: () => {}}
-	: require('./hue');
+const { setLight } = require('./hue');
 
 function heartRateToHsb(heartRate) {
 	const minHeartRate = 50;
@@ -30,7 +28,7 @@ function start() {
 
 		console.log(`Heart rate received: ${chalk.hsv(...hsb)(heartRateState.computedHeartRate)}`);
 
-		setLight(0, hsb);
+		// setLight(0, hsb);
 	}
 
 	// function receivePower(power) {
