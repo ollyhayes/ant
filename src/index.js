@@ -42,9 +42,9 @@ function start() {
 	function receiveHeartRate(heartRate) {
 		const hsb = heartRateToHsb(heartRate);
 
-		console.log(`Heart rate received: ${chalk.hsv(...hsb)(heartRate)}`);
+		// console.log(`Heart rate received: ${chalk.hsv(...hsb)(heartRate)}`);
 
-		setLight(1, hsb);
+		// setLight(1, hsb);
 	}
 
 	function receivePower(power) {
@@ -52,7 +52,7 @@ function start() {
 
 		console.log(`Power received: ${chalk.hsv(...hsb)(power)}`);
 
-		// setLight(2, hsb);
+		setLight(2, hsb);
 	}
 
 	// function receivePower(power) {
