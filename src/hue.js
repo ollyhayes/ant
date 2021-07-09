@@ -20,7 +20,7 @@ async function setLight(lightId, hsl) {
 		`http://${bridgeIp}/api/${username}/lights/${lightId}/state`,
 		{
 			method: 'PUT',
-			body: JSON.stringify({on: true, ...hsbPhillips}),
+			body: JSON.stringify({on: true, transitiontime: 0, ...hsbPhillips}),
 			headers: { 'Content-Type': 'application/json' },
 		});
 
