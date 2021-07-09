@@ -3,7 +3,13 @@ const fetch = require('node-fetch');
 const bridgeIp = '192.168.0.41';
 const username = 'XtogR86jSxPRqTzqT5zHupNUJU6BYzwGHHQl72AZ';
 
+let inProgress = false;
+
 async function setLight(lightId, hsl) {
+	if (inProgress)
+		return;
+
+	inProgress = true;
 	const hsbPhillips = {
 		hue: Math.round((hsl[0] / 360) * 65535),
 		sat: hsl[1] * 2.54,
@@ -19,6 +25,8 @@ async function setLight(lightId, hsl) {
 		});
 
 	console.log('Result: ', await response.json());
+
+	inProgress = false;
 }
 
 module.exports = {setLight};
