@@ -1,37 +1,52 @@
-const { GarminStick2, CadenceScanner } = require('ant-plus');
+const { GarminStick2, CadenceScanner, BicyclePowerScanner } = require('ant-plus');
 const Ant = require('ant-plus');
 
-function connectAnt(emitHeartRate) {
+function connectAnt(emitHeartRate, emitPower) {
 	const stick = new GarminStick2(3);
 
-	const cadenceScanner = new CadenceScanner(stick);
+	// const cadenceScanner = new CadenceScanner(stick);
+
+	const powerScanner = new BicyclePowerScanner(stick);
 
 	const heartScanner = new Ant.HeartRateScanner(stick);
 
-	heartScanner.on('attached', () => {
-		console.log(`Heart rate scanner attached, channel: ${heartScanner.channel}, deviceID: ${heartScanner.deviceID}`);
-	});
+	// these events just fire a bunch of times, not sure if it's really necessary to listen out for them
+	// heartScanner.on('attached', () => {
+	// 	console.log(`Heart rate scanner attached, channel: ${heartScanner.channel}, deviceID: ${heartScanner.deviceID}`); // I think device ID is meaningless for the scanner
+	// });
 
-	cadenceScanner.on('attached', () => {
-		console.log(`Cadence scanner attached, channel: ${heartScanner.channel}, deviceID: ${heartScanner.deviceID}`);
-	});
+	// cadenceScanner.on('attached', () => {
+	// 	console.log(`Cadence scanner attached, channel: ${cadenceScanner.channel}, deviceID: ${cadenceScanner.deviceID}`);
+	// });
+
+	// powerScanner.on('attached', () => {
+	// 	console.log(`Power scanner attached, channel: ${powerScanner.channel}, deviceID: ${powerScanner.deviceID}`);
+	// });
+
 
 	heartScanner.on('hbData', function (data) {
-		console.log(`Data received, deviceID: ${heartScanner.deviceID}, heart rate: ${data.computedHeartRate}`);
+		console.log(`Heart data received, deviceID: ${data.deviceID}, heart rate: ${data.computedHeartRate}`);
 
 		// emitHeartRate(sensor.deviceID, data);
-		emitHeartRate(data);
+		emitHeartRate(data.computedHeartRate);
 	});
 
-	cadenceScanner.on('speedData', function (data) {
-		console.log(`Data received, deviceID: ${cadenceScanner.deviceID}, heart rate: ${JSON.stringify(data)}`);
+	// cadenceScanner.on('speedData', function (data) {
+	// 	console.log(`Speed data received, deviceID: ${cadenceScanner.deviceID}, json: ${JSON.stringify(data)}`);
+	// });
+
+	powerScanner.on('powerData', function (data) {
+		console.log(`Power data received, deviceID: ${data.DeviceID}, power: ${data.Power}`);
+
+		emitPower(data.Power);
 	});
 	
 	stick.on('startup', function () {
 		//  sensor.attach(0, 0);
 		console.log('Startup event received, scanning...');
 		heartScanner.scan();
-		cadenceScanner.scan();
+		// cadenceScanner.scan();
+		powerScanner.scan();
 	});
 
 	console.log('Opening stick...');

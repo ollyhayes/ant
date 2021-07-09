@@ -7,7 +7,7 @@ function connectAnt(emitHeartRate) {
 		if (currentHeartRate > 200)
 			currentHeartRate = 0;
 
-		emitHeartRate({computedHeartRate: currentHeartRate});
+		emitHeartRate(currentHeartRate);
 	}, 1000);
 }
 

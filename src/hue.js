@@ -1,11 +1,11 @@
 const fetch = require('node-fetch');
 
-const bridgeIp = '192.168.0.15';
-const username = 'z113OjEddHlIbUrcagx7LL49ePgPgm3bB92aWE5H';
+const bridgeIp = '192.168.0.41';
+const username = 'XtogR86jSxPRqTzqT5zHupNUJU6BYzwGHHQl72AZ';
 
 async function setLight(lightId, hsl) {
 	const hsbPhillips = {
-		hue: (hsl[0] / 360) * 65535,
+		hue: Math.round((hsl[0] / 360) * 65535),
 		sat: hsl[1] * 2.54,
 		bri: hsl[2] * 2.54
 	};
