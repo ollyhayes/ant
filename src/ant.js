@@ -25,10 +25,10 @@ function connectAnt(emitHeartRate, emitPower) {
 
 
 	heartScanner.on('hbData', function (data) {
-		console.log(`Heart data received, deviceID: ${data.deviceID}, heart rate: ${data.computedHeartRate}`);
+		console.log(`Heart data received, deviceID: ${data.deviceID}, heart rate: ${data.ComputedHeartRate}`);
 
 		// emitHeartRate(sensor.deviceID, data);
-		emitHeartRate(data.computedHeartRate);
+		emitHeartRate(data.ComputedHeartRate);
 	});
 
 	// cadenceScanner.on('speedData', function (data) {
@@ -36,7 +36,7 @@ function connectAnt(emitHeartRate, emitPower) {
 	// });
 
 	powerScanner.on('powerData', function (data) {
-		console.log(`Power data received, deviceID: ${data.DeviceID}, power: ${data.Power}`);
+		// console.log(`Power data received, deviceID: ${data.DeviceID}, power: ${data.Power}`);
 
 		emitPower(data.Power);
 	});
