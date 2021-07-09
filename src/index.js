@@ -7,7 +7,7 @@ const { setLight } = require('./hue');
 
 function heartRateToHsb(heartRate) {
 	const minHeartRate = 50;
-	const maxHeartRate = 180;
+	const maxHeartRate = 135;
 
 	const minHue = 250;
 	const maxHue = 0;
@@ -22,7 +22,7 @@ function heartRateToHsb(heartRate) {
 
 function powerToHsb(power) {
 	const minPower = 0;
-	const maxPower = 1000;
+	const maxPower = 170;
 
 	const minHue = 250;
 	const maxHue = 0;
