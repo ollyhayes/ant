@@ -23,9 +23,14 @@ function connectAnt(emitHeartRate, emitPower) {
 	// 	console.log(`Power scanner attached, channel: ${powerScanner.channel}, deviceID: ${powerScanner.deviceID}`);
 	// });
 
+	let lastReading = null;
 
 	heartScanner.on('hbData', function (data) {
-		console.log(`Heart data received, deviceID: ${data.deviceID}, heart rate: ${data.ComputedHeartRate}`);
+		const time = Date.now();
+		const interval = Math.round(time - lastReading);
+		lastReading = time;
+
+		console.log(`Heart data received, heart rate: ${data.ComputedHeartRate}, interval: ${interval}`);
 
 		// emitHeartRate(sensor.deviceID, data);
 		emitHeartRate(data.ComputedHeartRate);

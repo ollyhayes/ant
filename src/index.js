@@ -50,9 +50,9 @@ function start() {
 	function receivePower(power) {
 		const hsb = powerToHsb(power);
 
-		console.log(`Power received: ${chalk.hsv(...hsb)(power)}`);
+		// console.log(`Power received: ${chalk.hsv(...hsb)(power)}`);
 
-		setLight(2, hsb);
+		// setLight(2, hsb);
 	}
 
 	// function receivePower(power) {
